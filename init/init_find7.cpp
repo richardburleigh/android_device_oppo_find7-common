@@ -26,9 +26,12 @@
    OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
    IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
+#include <fcntl.h>
+#include <linux/fs.h>
+#include <stdio.h>
 #include <stdlib.h>
-
+#include <unistd.h>
+#include <sys/ioctl.h>
 #include "vendor_init.h"
 #include "property_service.h"
 #include "log.h"
@@ -49,6 +52,16 @@ static void import_kernel_nv(char *name, int for_emulator)
         property_set("ro.oppo.rf_version", value);
     } else if (!strcmp(name,"oppo.pcb_version")) {
         property_set("ro.oppo.pcb_version", value);
+        if (!strcmp(value, "20") ||
+                !strcmp(value, "21") ||
+                !strcmp(value, "22") ||
+                !strcmp(value, "23")) {
+            property_set("ro.sf.lcd_density", "640");
+            property_set("ro.oppo.device", "find7s");
+        } else {
+            property_set("ro.sf.lcd_density", "480");
+            property_set("ro.oppo.device", "find7a");
+        }
     }
 }
 
