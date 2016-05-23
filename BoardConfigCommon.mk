@@ -21,7 +21,7 @@
 TARGET_SPECIFIC_HEADER_PATH += device/oppo/find7-common/include
 
 # Kernel
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 zcache.enabled=1 zcache.compressor=lz4
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.selinux=permissive
 TARGET_KERNEL_CONFIG := cyanogenmod_find7_defconfig
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := arm-linux-androideabi-
 TARGET_KERNEL_SOURCE := kernel/oppo/msm8974
@@ -50,6 +50,7 @@ COMMON_GLOBAL_CFLAGS += -DUSE_RIL_VERSION_10
 COMMON_GLOBAL_CPPFLAGS += -DUSE_RIL_VERSION_10
 
 # Init
+TARGET_INIT_VENDOR_LIB := libinit_msm
 TARGET_LIBINIT_MSM8974_DEFINES_FILE := device/oppo/find7-common/init/init_find7.cpp
 
 # Properties
